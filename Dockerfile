@@ -1,0 +1,28 @@
+#VERSION DE JAVA, EN ESTE CASO LA 17
+FROM openjdk:17-jdk-alpine
+
+#ESTABLECE COMO SE VA A LLAMAR EL DIRECTORIO DE TRABAJO
+WORKDIR /app
+
+#COPIA EL ARCHIVO .jar a la imagen de docker
+COPY target/distribuidora-bebidas-0.0.1-SNAPSHOT.jar /app/
+
+#PUERTO EN EL CUAL VA A CORRER EN EL FUTURO EL CONTENEDOR DOCKER
+EXPOSE 8080
+
+# AGREGAR NGINX COMO SERVIDOR WEB
+RUN apk add nginx
+
+# CONFIGURAR NGINX
+COPY nginx.config /etc/nginx/nginx.conf
+
+#PUERTO 80 Y 443
+EXPOSE 80 443
+
+# CREAR SCRIPT DE INICIALIZACIÓN
+COPY init.sh /init.sh
+RUN chmod +x /init.sh
+
+# EJECUTAR SCRIPT DE INICIALIZACIÓN
+CMD ["/init.sh"]
+
