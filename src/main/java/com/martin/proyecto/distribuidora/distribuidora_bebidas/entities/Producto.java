@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "productos")
@@ -19,12 +22,18 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     
+    @NotBlank(message = "No puede estar vacio el titulo")
+    @Size(min = 2)
     private String titulo;
 
+    @NotBlank(message = "No puede estar vacia la descripcion")
+    @Size(min = 2)
     private String descripcion;
 
+    @NotBlank(message = "No puede estar vacio el stock")
     private Long stock;
 
+    @NotBlank(message = "No puede estar vacio el precio")
     private Long precio;
 
     @Column(name = "fecha_creacion")

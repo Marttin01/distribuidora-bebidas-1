@@ -8,12 +8,10 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-public @interface ExistByUsername {
-
 @Constraint(validatedBy = ExistByUsernameValidation.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistsByMail {
+public @interface ExistByUsername {
 
 	String message() default "Ya existe el username en la base de datos";
 
@@ -22,4 +20,4 @@ public @interface ExistsByMail {
 	Class<? extends Payload>[] payload() default { };
 
 }
-}
+

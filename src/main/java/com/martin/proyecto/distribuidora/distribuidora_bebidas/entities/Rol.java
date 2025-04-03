@@ -1,10 +1,15 @@
 package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities;
 
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.rolValidation.ExistByNombre;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "roles")
@@ -14,8 +19,12 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "No puede estar vacion el nombre del rol")
+    @Size(min = 2)
+    @ExistByNombre
     private String nombre;
 
+    @NotBlank(message = "No puede estar vacia la descripcion del rol")
     private String descripcion;
     
     public Rol(){}

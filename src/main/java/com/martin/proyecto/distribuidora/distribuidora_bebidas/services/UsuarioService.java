@@ -24,4 +24,5 @@ public interface UsuarioService {
 
     boolean existsByUsername(String username);
 
+    boolean existByRolNombre(string nombre);
 }

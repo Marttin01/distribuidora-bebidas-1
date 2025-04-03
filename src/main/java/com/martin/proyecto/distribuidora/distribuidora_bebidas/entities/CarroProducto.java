@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "carritos_productos")
@@ -28,6 +29,7 @@ public class CarroProducto {
     @JoinColumn(name = "productos_id")
     private Producto producto;
 
+    @NotBlank(message = "No puede estar vacia la cantidad")
     private Integer cantidad;
 
     public CarroProducto(){

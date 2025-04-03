@@ -20,8 +20,7 @@ public class ApiController {
     public ResponseEntity<?> welcome(){
         try {
             Map<Object,Object> respuesta = new HashMap<>();
-            respuesta.put("Mensaje", "Bienvenido a la API REST distribuidora! ");
-
+            respuesta.put("Mensaje", "Bienveniddaso a la API REST distribuidora! ");
             return ResponseEntity.ok(respuesta);
         } catch (Exception e) {
             System.out.println(e);
