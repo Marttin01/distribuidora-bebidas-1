@@ -103,7 +103,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         return repository.existsByUsername(username);
     }
 
-    public boolean existByRolNombre(string nombre) {
+    public boolean existByRolNombre(String nombre) {
         return repository.existsByRolNombre(nombre);
     };
 

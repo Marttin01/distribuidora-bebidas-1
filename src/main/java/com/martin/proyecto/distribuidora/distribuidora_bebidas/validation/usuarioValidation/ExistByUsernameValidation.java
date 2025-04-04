@@ -1,4 +1,4 @@
-package com.martin.proyecto.distribuidora.distribuidora_bebidas.validation;
+package com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.usuarioValidation;
 
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.services.UsuarioService;
 

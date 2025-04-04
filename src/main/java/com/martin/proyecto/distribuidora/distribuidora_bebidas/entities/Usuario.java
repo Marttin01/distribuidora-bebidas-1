@@ -3,8 +3,8 @@ package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.ExistByUsername;
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.ExistsByMail;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.usuarioValidation.ExistByUsername;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.usuarioValidation.ExistsByMail;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

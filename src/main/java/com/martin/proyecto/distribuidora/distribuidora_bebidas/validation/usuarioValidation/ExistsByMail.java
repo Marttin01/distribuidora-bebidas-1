@@ -1,4 +1,4 @@
-package com.martin.proyecto.distribuidora.distribuidora_bebidas.validation;
+package com.martin.proyecto.distribuidora.distribuidora_bebidas.validation.usuarioValidation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
