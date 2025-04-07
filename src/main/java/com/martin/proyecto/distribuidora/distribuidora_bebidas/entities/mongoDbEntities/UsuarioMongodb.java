@@ -1,10 +1,19 @@
 package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities;
 
+import java.util.Date;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Document(collection = "usuarios")
 public class UsuarioMongodb {
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String mail;
@@ -17,8 +26,17 @@ public class UsuarioMongodb {
 
     private String password;
 
-    public UsuarioMongodb (){
+    private String rol;
 
+    @DBRef
+    private CarroMongodb carrito;
+
+    private Date fechaCreacion;
+
+    private boolean activo;
+
+    public UsuarioMongodb (){
+        fechaCreacion = new Date();
     }
 
     public UsuarioMongodb (String mail, String username, String nombre, String apellido, String password){
@@ -27,6 +45,14 @@ public class UsuarioMongodb {
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMail() {
@@ -67,6 +93,38 @@ public class UsuarioMongodb {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public CarroMongodb getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarroMongodb carrito) {
+        this.carrito = carrito;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override
