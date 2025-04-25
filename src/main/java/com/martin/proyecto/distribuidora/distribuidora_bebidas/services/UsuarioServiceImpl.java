@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.Usua
 import jakarta.transaction.Transactional;
 
 @Service
+@Profile("jpa")
 public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired

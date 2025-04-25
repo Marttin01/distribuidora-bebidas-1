@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Usuario;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.UsuarioMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.UsuarioMongoDbRepository;
 
@@ -31,7 +30,7 @@ public class UsuarioMongoDbServiceImpl implements UsuarioMongoDbService{
     }
 
     @Override
-    public Usuario save(UsuarioMongodb usuario) {
+    public UsuarioMongodb save(UsuarioMongodb usuario) {
         return null;
     }
     

@@ -1,5 +1,6 @@
 package com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import java.util.Optional;
 
 
 @Repository
+@Profile("jpa")
 public interface ProductoRepository extends CrudRepository<Producto,String>{
 
     Optional<Producto> findById(String id);

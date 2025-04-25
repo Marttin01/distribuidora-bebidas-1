@@ -3,11 +3,13 @@ package com.martin.proyecto.distribuidora.distribuidora_bebidas.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Usuario;
 
 @Service
+@Profile("jpa")
 public interface UsuarioService {
 
     List<Usuario> findAll();

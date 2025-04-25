@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +21,7 @@ import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Usuario;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.UsuarioRepository;
 
 @Service
+@Profile("jpa")
 public class JpaUserDetailsService implements UserDetailsService{
 
     @Autowired

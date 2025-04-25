@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Usuario;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.UsuarioMongodb;
 
 @Service
@@ -15,7 +14,7 @@ public interface UsuarioMongoDbService {
 
     Optional<UsuarioMongodb> findById(String id);
     
-    Usuario save(UsuarioMongodb usuario);
+    UsuarioMongodb save(UsuarioMongodb usuario);
 
     Optional<UsuarioMongodb> update(String id, UsuarioMongodb usuario);
 

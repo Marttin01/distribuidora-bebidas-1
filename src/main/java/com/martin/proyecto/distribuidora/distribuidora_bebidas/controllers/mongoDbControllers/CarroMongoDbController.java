@@ -11,40 +11,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.UsuarioMongodb;
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.services.mongoDbServices.UsuarioMongoDbService;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.CarroMongodb;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.services.mongoDbServices.CarroMongoDbService;
 
 @RestController
-@RequestMapping("/apiM/usuarios")
-public class UsuarioMongoDbController {
+@RequestMapping("/apiM/carritos")
+public class CarroMongoDbController {
     
     @Autowired
-    private UsuarioMongoDbService service;
+    private CarroMongoDbService service;
 
     @GetMapping
-    public ResponseEntity<List<UsuarioMongodb>> findAll(){
+    public ResponseEntity<List<CarroMongodb>> findAll(){
         try {
-            List<UsuarioMongodb> usuarios = service.findAll();
-            return ResponseEntity.ok(usuarios);
+            List<CarroMongodb> carritos = service.findAll();
+            return ResponseEntity.ok(carritos);
         } catch (Exception e) {
-            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioMongodb> findById(@PathVariable String id){
+    public ResponseEntity<CarroMongodb> findById(@PathVariable String id){
         try {
-            Optional<UsuarioMongodb> optionalUsuario = service.findById(id);
-            if(optionalUsuario.isPresent()){
-                return ResponseEntity.ok(optionalUsuario.orElseThrow());
+            Optional<CarroMongodb> optionalCarro = service.findById(id);
+            if(optionalCarro.isPresent()){
+                return ResponseEntity.ok(optionalCarro.orElseThrow());
             }else{
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
         } catch (Exception e) {
-            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+    
 }

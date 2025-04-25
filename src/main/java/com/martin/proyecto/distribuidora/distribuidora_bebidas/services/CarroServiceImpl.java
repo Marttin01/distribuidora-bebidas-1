@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.Carr
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.ProductoRepository;
 
 @Service
+@Profile("jpa")
 public class CarroServiceImpl implements CarroService{
 
     @Autowired

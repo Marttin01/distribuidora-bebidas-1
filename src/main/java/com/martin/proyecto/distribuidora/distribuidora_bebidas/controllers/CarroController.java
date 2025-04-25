@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +21,7 @@ import com.martin.proyecto.distribuidora.distribuidora_bebidas.services.CarroSer
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/carritos")
+@Profile("jpa")
 public class CarroController {
 
     @Autowired
