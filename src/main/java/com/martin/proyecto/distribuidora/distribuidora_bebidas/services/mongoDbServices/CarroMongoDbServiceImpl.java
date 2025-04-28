@@ -31,7 +31,7 @@ public class CarroMongoDbServiceImpl implements CarroMongoDbService {
 
     @Override
     public CarroMongodb save(CarroMongodb carro) {
-        return null;
+        return repository.save(carro);
     }
 
     @Override

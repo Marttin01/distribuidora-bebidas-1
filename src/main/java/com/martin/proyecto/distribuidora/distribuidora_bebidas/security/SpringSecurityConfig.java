@@ -54,6 +54,10 @@ public class SpringSecurityConfig {
         .requestMatchers(HttpMethod.GET,"api/productos/{id}"). permitAll() /*HABILITADO PARA PRUEBAS*/
         .requestMatchers(HttpMethod.PUT,"api/productos/{id}"). permitAll() /*HABILITADO PARA PRUEBAS*/
         .requestMatchers(HttpMethod.DELETE,"api/productos/{id}").permitAll()/*HABILITADO PARA PRUEBAS*/
+        /********* RUTAS PARA MONGODB********/
+        /** USUARIOS **/
+        .requestMatchers(HttpMethod.GET,"apiM/usuarios").permitAll()
+        .requestMatchers(HttpMethod.POST,"apiM/usuarios/register").permitAll()
         .anyRequest()
         .authenticated()
         )

@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Document(collection = "usuarios")
 public class UsuarioMongodb {
@@ -16,14 +17,19 @@ public class UsuarioMongodb {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @NotBlank(message = "No puede estar el mail vacio")
     private String mail;
 
+    @NotBlank(message = "El username no puede estar vacio")
     private String username;
 
+    @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
 
+    @NotBlank(message = "El apellido no puede estar vacio")
     private String apellido;
 
+    @NotBlank(message = "La contraseña no puede estar vacia")
     private String password;
 
     private String rol;
@@ -37,6 +43,7 @@ public class UsuarioMongodb {
 
     public UsuarioMongodb (){
         fechaCreacion = new Date();
+        activo = true;
     }
 
     public UsuarioMongodb (String mail, String username, String nombre, String apellido, String password){
