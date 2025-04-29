@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Document(collection = "usuarios")
@@ -18,6 +19,7 @@ public class UsuarioMongodb {
     private String id;
 
     @NotBlank(message = "No puede estar el mail vacio")
+    @Email(message = "Mail no valido")
     private String mail;
 
     @NotBlank(message = "El username no puede estar vacio")

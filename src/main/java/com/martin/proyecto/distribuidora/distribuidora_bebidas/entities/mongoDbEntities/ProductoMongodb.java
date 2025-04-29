@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.validation.constraints.NotBlank;
 
 @Document(collection = "productos")
 public class ProductoMongodb {
@@ -16,12 +17,15 @@ public class ProductoMongodb {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @NotBlank(message = "El titulo no puede estar vacio")
     private String titulo;
 
     private String descripcion;
 
+    @NotBlank(message =  "El stock no puede estar vacio")
     private Long stock;
 
+    @NotBlank(message = "El precio no puede estar vacio")
     private Long precio;
 
     private Date fechaCreacion;

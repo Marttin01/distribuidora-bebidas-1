@@ -69,7 +69,11 @@ public class UsuarioMongoDbServiceImpl implements UsuarioMongoDbService{
 
     @Override
     public Optional<UsuarioMongodb> delete(String id) {
-        return Optional.empty();
+        Optional<UsuarioMongodb> optionalUsuario = usuarioRepository.findById(id);
+        if(optionalUsuario.isPresent()){
+            usuarioRepository.delete(optionalUsuario.orElseThrow());
+        }
+        return optionalUsuario;
     }
 
 }

@@ -31,17 +31,35 @@ public class ProductoMongoDbServiceImpl implements ProductoMongoDbService {
 
     @Override
     public ProductoMongodb save(ProductoMongodb producto) {
-        return null;
+        return repository.save(producto);
     }
 
     @Override
     public Optional<ProductoMongodb> update(String id, ProductoMongodb producto) {
-        return Optional.empty();
+        Optional<ProductoMongodb> optionalProducto = repository.findById(id);
+        if(optionalProducto.isPresent()){
+            ProductoMongodb p = optionalProducto.orElseThrow();
+            p.setTitulo(producto.getTitulo());
+            p.setDescripcion(producto.getDescripcion());
+            p.setStock(producto.getStock());
+            Long s = producto.getStock();
+            if(s == 0) {
+                p.setActivo(false);
+            }else p.setActivo(true);
+            p.setPrecio(producto.getPrecio());
+        }
+
+        return optionalProducto;
+    
     }
 
     @Override
     public Optional<ProductoMongodb> delete(String id) {
-        return Optional.empty();
+        Optional<ProductoMongodb> optionalProducto = repository.findById(id);
+        if(optionalProducto.isPresent()){
+            repository.deleteById(id);
+        }
+        return optionalProducto;
     }
     
 }
