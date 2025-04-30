@@ -3,6 +3,8 @@ package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDb
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Producto;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,10 +17,10 @@ public class CarroProductoMongodb {
     private String id;
 
     @DBRef
-    private String carritoId;
+    private CarroMongodb carrito;
 
     @DBRef
-    private String productoId;
+    private ProductoMongodb producto;
 
     private Integer cantidad;
 
@@ -34,20 +36,20 @@ public class CarroProductoMongodb {
         this.id = id;
     }
 
-    public String getCarritoId() {
-        return carritoId;
+    public CarroMongodb getCarrito() {
+        return carrito;
     }
 
-    public void setCarritoId(String carritoId) {
-        this.carritoId = carritoId;
+    public void setCarrito(CarroMongodb carrito) {
+        this.carrito = carrito;
     }
 
-    public String getProductoId() {
-        return productoId;
+    public ProductoMongodb getProducto() {
+        return producto;
     }
 
-    public void setProductoId(String productoId) {
-        this.productoId = productoId;
+    public void setProducto(ProductoMongodb producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidad() {

@@ -16,8 +16,10 @@ public interface CarroMongoDbService {
     
     CarroMongodb save(CarroMongodb carro);
 
-    Optional<CarroMongodb> update(String id, CarroMongodb carro);
-
     Optional<CarroMongodb> delete(String id);
+
+    CarroMongodb addProducto(String id, String id2);
+
+    CarroMongodb deleteProducto(String id, String id2);
 
 }

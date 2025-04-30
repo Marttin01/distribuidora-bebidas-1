@@ -45,7 +45,11 @@ public class CarroServiceImpl implements CarroService{
     @Transactional
     @Override
     public Optional<Carro> delete(String id) {
-        return null;
+        Optional<Carro> optionalCarro = repository.findById(id);
+        if(optionalCarro.isPresent()){
+            repository.delete(optionalCarro.orElseThrow());
+        }
+        return optionalCarro;
     }
 
     @Transactional

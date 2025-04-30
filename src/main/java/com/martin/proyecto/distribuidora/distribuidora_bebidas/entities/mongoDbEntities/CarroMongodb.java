@@ -32,4 +32,22 @@ public class CarroMongodb {
         this.id = id;
     }
 
+    public List<CarroProductoMongodb> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<CarroProductoMongodb> productos) {
+        this.productos = productos;
+    }
+
+
+    public CarroProductoMongodb findId(String id){
+        for(CarroProductoMongodb p : productos){
+            if(p.getProducto().getId().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
+
 }

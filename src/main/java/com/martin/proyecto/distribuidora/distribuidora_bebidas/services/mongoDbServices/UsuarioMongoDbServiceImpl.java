@@ -71,7 +71,9 @@ public class UsuarioMongoDbServiceImpl implements UsuarioMongoDbService{
     public Optional<UsuarioMongodb> delete(String id) {
         Optional<UsuarioMongodb> optionalUsuario = usuarioRepository.findById(id);
         if(optionalUsuario.isPresent()){
-            usuarioRepository.delete(optionalUsuario.orElseThrow());
+            UsuarioMongodb u = optionalUsuario.orElseThrow();
+            usuarioRepository.delete(u);
+            carritoRepository.delete(u.getCarrito());
         }
         return optionalUsuario;
     }
