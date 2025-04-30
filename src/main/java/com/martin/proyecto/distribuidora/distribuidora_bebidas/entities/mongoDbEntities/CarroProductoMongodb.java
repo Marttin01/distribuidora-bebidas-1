@@ -3,7 +3,6 @@ package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDb
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Producto;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

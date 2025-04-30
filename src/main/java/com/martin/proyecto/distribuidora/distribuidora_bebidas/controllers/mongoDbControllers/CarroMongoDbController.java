@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,5 +58,33 @@ public class CarroMongoDbController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PutMapping("/add/{id}/{id2}")
+    public ResponseEntity<CarroMongodb> addProducto(@PathVariable String id, @PathVariable String id2){
+        try {
+            Optional<CarroMongodb> optionalCarro = Optional.of(service.addProducto(id, id2));
+            if(optionalCarro.isPresent()){
+                return ResponseEntity.ok(optionalCarro.orElseThrow());
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PutMapping("/remove/{id}/{id2}")
+    public ResponseEntity<CarroMongodb> removeProducto(@PathVariable String id, @PathVariable String id2){
+        try {
+            Optional<CarroMongodb> optionalCarro = Optional.of(service.deleteProducto(id, id2));
+            if(optionalCarro.isPresent()){
+                return ResponseEntity.ok(optionalCarro.orElseThrow());
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }   
+    }
+
+
     
 }

@@ -77,8 +77,25 @@ public class CarroMongoDbServiceImpl implements CarroMongoDbService {
 
     @Override
     public CarroMongodb deleteProducto(String id, String id2) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        Optional<CarroMongodb> optionalCarro = carroRepository.findById(id);
+        Optional<ProductoMongodb> optionalProducto = productoRepository.findById(id2);
 
+        if(optionalCarro.isPresent() && optionalProducto.isPresent()){
+            CarroMongodb carro = optionalCarro.orElseThrow();
+            ProductoMongodb producto = optionalProducto.orElseThrow();
+
+            CarroProductoMongodb cp = carro.findId(producto.getId());
+
+            if(cp != null){
+                if(cp.getCantidad() > 1){
+                    cp.setCantidad(cp.getCantidad() - 1);
+                }else{
+                    carro.getProductos().remove(cp);
+                }
+            }
+            return carroRepository.save(carro);
+        }
+        return optionalCarro.orElseThrow();
+    }
+    
 }
