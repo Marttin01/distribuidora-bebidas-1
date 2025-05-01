@@ -10,6 +10,7 @@ import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbE
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.CarroProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.ProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.CarroMongoDbRepository;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.CarroProductoMongoDbRepository;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.ProductoMongoDbRepository;
 
 import jakarta.transaction.Transactional;
@@ -22,6 +23,9 @@ public class CarroMongoDbServiceImpl implements CarroMongoDbService {
 
     @Autowired
     private ProductoMongoDbRepository productoRepository;
+
+    @Autowired
+    private CarroProductoMongoDbRepository carroProductoRepository;
 
     @Transactional
     @Override
@@ -63,10 +67,13 @@ public class CarroMongoDbServiceImpl implements CarroMongoDbService {
 
             if(cp != null){
                 cp.setCantidad(cp.getCantidad() + 1);
+                carroProductoRepository.save(cp);
             }else{
                 cp2.setCarrito(carro);
                 cp2.setProducto(producto);
                 cp2.setCantidad(1);
+                carroProductoRepository.save(cp2);
+
 
                 carro.getProductos().add(cp2);
             }
@@ -89,8 +96,10 @@ public class CarroMongoDbServiceImpl implements CarroMongoDbService {
             if(cp != null){
                 if(cp.getCantidad() > 1){
                     cp.setCantidad(cp.getCantidad() - 1);
+                    carroProductoRepository.save(cp);
                 }else{
                     carro.getProductos().remove(cp);
+                    carroProductoRepository.delete(cp);
                 }
             }
             return carroRepository.save(carro);

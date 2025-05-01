@@ -68,6 +68,7 @@ public class CarroMongoDbController {
             }
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

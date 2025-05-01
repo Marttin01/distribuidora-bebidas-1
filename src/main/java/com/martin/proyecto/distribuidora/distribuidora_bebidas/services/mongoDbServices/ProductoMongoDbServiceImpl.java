@@ -31,7 +31,8 @@ public class ProductoMongoDbServiceImpl implements ProductoMongoDbService {
 
     @Override
     public ProductoMongodb save(ProductoMongodb producto) {
-        return repository.save(producto);
+        ProductoMongodb p = ifStock(producto);
+        return repository.save(p);
     }
 
     @Override
@@ -62,4 +63,16 @@ public class ProductoMongoDbServiceImpl implements ProductoMongoDbService {
         return optionalProducto;
     }
     
+    // METODOS PRIVADOS CLASE SERVICE MONGODB
+
+    private ProductoMongodb ifStock(ProductoMongodb p){
+        ProductoMongodb producto = p;
+        if(producto.getStock() > 0){
+            producto.setActivo(true);
+            return producto;
+        }
+        producto.setActivo(false);
+        return producto;
+    }
+
 }

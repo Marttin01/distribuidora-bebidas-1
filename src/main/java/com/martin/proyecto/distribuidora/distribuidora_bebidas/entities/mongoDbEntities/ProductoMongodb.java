@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotBlank;
 
 @Document(collection = "productos")
@@ -41,13 +40,6 @@ public class ProductoMongodb {
         this.descripcion = descripcion;
         this.stock = stock;
         this.precio = precio;
-    }
-
-    @PrePersist
-    private void ifStock(){
-        if(this.stock == 0){
-            this.activo = false;
-        }else this.activo = true;
     }
 
     public String getId() {

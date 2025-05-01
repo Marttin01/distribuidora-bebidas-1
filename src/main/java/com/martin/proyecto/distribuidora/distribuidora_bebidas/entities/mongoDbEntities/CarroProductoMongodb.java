@@ -3,6 +3,7 @@ package com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDb
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class CarroProductoMongodb {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @JsonIgnore
     @DBRef
     private CarroMongodb carrito;
 

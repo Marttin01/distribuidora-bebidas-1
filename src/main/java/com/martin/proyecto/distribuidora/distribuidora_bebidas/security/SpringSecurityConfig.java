@@ -57,7 +57,21 @@ public class SpringSecurityConfig {
         /********* RUTAS PARA MONGODB********/
         /** USUARIOS **/
         .requestMatchers(HttpMethod.GET,"apiM/usuarios").permitAll()
+        .requestMatchers(HttpMethod.GET,"apiM/usuarios/{id}").permitAll()
         .requestMatchers(HttpMethod.POST,"apiM/usuarios/register").permitAll()
+        .requestMatchers(HttpMethod.DELETE,"apiM/usuarios/{id}").permitAll()
+        /** PRODUCTOS **/
+        .requestMatchers(HttpMethod.GET,"apiM/productos").permitAll()
+        .requestMatchers(HttpMethod.POST,"apiM/productos").permitAll()
+        .requestMatchers(HttpMethod.GET,"apiM/productos/{id}").permitAll()
+        .requestMatchers(HttpMethod.PUT,"apiM/productos/{id}").permitAll()
+        .requestMatchers(HttpMethod.DELETE,"apiM/productos/{id}").permitAll()
+        /** CARRITOS **/
+        .requestMatchers(HttpMethod.GET,"apiM/carritos").permitAll()
+        .requestMatchers(HttpMethod.POST,"apiM/carritos").permitAll()
+        .requestMatchers(HttpMethod.GET,"apiM/carritos/{id}").permitAll()
+        .requestMatchers(HttpMethod.PUT,"apiM/carritos/add/{id}/{id2}").permitAll()
+        .requestMatchers(HttpMethod.PUT,"apiM/carritos/remove/{id}/{id2}").permitAll()
         .anyRequest()
         .authenticated()
         )
