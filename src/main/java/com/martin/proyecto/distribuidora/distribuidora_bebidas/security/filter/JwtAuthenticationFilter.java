@@ -24,11 +24,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import static com.martin.proyecto.distribuidora.distribuidora_bebidas.security.TokenJwtConfig.*;//LA CONFIGURACION DEL TOKEN ESTA TODO EN ESA CLASE
+import static com.martin.proyecto.distribuidora.distribuidora_bebidas.security.TokenJwtConfig.*;     //LA CONFIGURACION DEL TOKEN ESTA TODO EN ESA CLASE
+
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
     private AuthenticationManager authenticationManager;
+
+    // @Value("${spring.profiles.active}")
+    // private String activeProfile;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
@@ -37,6 +41,30 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         
+        // if(isMongo(activeProfile)){
+        //     UsuarioMongodb user = null;
+        //     String username = null;
+        //     String password = null;
+
+        //     try {
+        //         user = new ObjectMapper().readValue(request.getInputStream(), UsuarioMongodb.class);
+        //         username = user.getUsername();
+        //         password = user.getPassword();
+        //     } catch (StreamReadException e) {
+        //         e.printStackTrace();
+        //     } catch (DatabindException e) {
+        //         e.printStackTrace();
+        //     } catch (IOException e) {
+        //         e.printStackTrace();
+        //     }
+    
+        //     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+    
+        //     return authenticationManager.authenticate(authenticationToken);
+        // }
+
+        /*** SI EL PERFIL DEL SERVICIO NO ES MONGO PASA LO DE ABAJO ***/
+
         Usuario user = null;
         String username = null;
         String password = null;
@@ -95,5 +123,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(401);
         response.setContentType(CONTENT_TYPE);
     }
+
+    // private Boolean isMongo(String activeProfile){
+    //     return activeProfile.equals("mongo");
+    // }
 
 }

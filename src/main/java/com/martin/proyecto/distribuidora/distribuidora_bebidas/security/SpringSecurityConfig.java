@@ -33,7 +33,7 @@ public class SpringSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http.authorizeHttpRequests((authz) -> authz
+        return http.authorizeHttpRequests(authz -> authz
         //API
         .requestMatchers(HttpMethod.GET,"/").permitAll()
         .requestMatchers(HttpMethod.POST,"/").permitAll()
@@ -77,8 +77,8 @@ public class SpringSecurityConfig {
         )
         .addFilter(new JwtAuthenticationFilter(authenticationManager()))
         .addFilter(new JwtValidationFilter(authenticationManager()))
-        .csrf((config) -> config.disable())
-        .sessionManagement((management) -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .csrf(config -> config.disable())
+        .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .build();
     }
 
