@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.Usuario;
+import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.UsuarioMongodb;
 
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -31,8 +33,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
 
-    // @Value("${spring.profiles.active}")
-    // private String activeProfile;
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
@@ -41,27 +43,27 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         
-        // if(isMongo(activeProfile)){
-        //     UsuarioMongodb user = null;
-        //     String username = null;
-        //     String password = null;
+        if(activeProfile == "mongo"){
+            UsuarioMongodb user = null;
+            String username = null;
+            String password = null;
 
-        //     try {
-        //         user = new ObjectMapper().readValue(request.getInputStream(), UsuarioMongodb.class);
-        //         username = user.getUsername();
-        //         password = user.getPassword();
-        //     } catch (StreamReadException e) {
-        //         e.printStackTrace();
-        //     } catch (DatabindException e) {
-        //         e.printStackTrace();
-        //     } catch (IOException e) {
-        //         e.printStackTrace();
-        //     }
+            try {
+                user = new ObjectMapper().readValue(request.getInputStream(), UsuarioMongodb.class);
+                username = user.getUsername();
+                password = user.getPassword();
+            } catch (StreamReadException e) {
+                e.printStackTrace();
+            } catch (DatabindException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     
-        //     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
     
-        //     return authenticationManager.authenticate(authenticationToken);
-        // }
+            return authenticationManager.authenticate(authenticationToken);
+        }
 
         /*** SI EL PERFIL DEL SERVICIO NO ES MONGO PASA LO DE ABAJO ***/
 
@@ -124,8 +126,5 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType(CONTENT_TYPE);
     }
 
-    // private Boolean isMongo(String activeProfile){
-    //     return activeProfile.equals("mongo");
-    // }
 
 }

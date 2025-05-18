@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @Profile("jpa")
-// @ConditionalOnProperty(name = "spring.datasource.url")
 @EnableJpaRepositories(basePackages = "com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories")
 public class JpaConfig {
     
