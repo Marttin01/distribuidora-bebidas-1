@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         
-        if(activeProfile == "mongo"){
+        if(activeProfile.equals("mongo")){
             UsuarioMongodb user = null;
             String username = null;
             String password = null;
@@ -88,12 +88,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return authenticationManager.authenticate(authenticationToken);
     }
 
+
+
+
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,Authentication authResult) throws IOException, ServletException {
 
         User user = (User) authResult.getPrincipal();
         String username = user.getUsername();
-        // Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
         SimpleGrantedAuthority rol = (SimpleGrantedAuthority) authResult.getAuthorities().stream().findFirst().orElseThrow(() -> new RuntimeException("No se encontro rol o authority alguno"));
 
         Map<String,Object> claims = new HashMap<>();

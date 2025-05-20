@@ -34,7 +34,7 @@ public class JpaUserDetailsService implements UserDetailsService{
         Optional<Usuario> usuarioOptional = repository.findByUsername(username);
 
         if(usuarioOptional.isEmpty()){
-            throw new UsernameNotFoundException(String.format("Username %s no existe en el sitema", username));
+            throw new UsernameNotFoundException(String.format("Username %s no existe en el sistema", username));
         }
 
         Usuario usuario = usuarioOptional.orElseThrow();
