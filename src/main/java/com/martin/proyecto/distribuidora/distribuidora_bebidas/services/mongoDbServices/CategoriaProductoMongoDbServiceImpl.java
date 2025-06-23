@@ -18,12 +18,15 @@ public class CategoriaProductoMongoDbServiceImpl implements CategoriaProductoMon
 
     @Override
     public Optional<CategoriaProductoMongodb> findById(String id) {
-        return Optional.of(repository.findById(id).orElseThrow());
+        return repository.findById(id);
     }
 
     @Override
     public CategoriaProductoMongodb save(CategoriaProductoMongodb categoriaProducto) {
+
         return repository.save(categoriaProducto);
+
+        
     }
 
     @Override

@@ -8,9 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
-@Document(collection = "categorias_productos")
-public class CategoriaProductoMongodb {
-    
+@Document(collection = "subcategorias_productos")
+public class SubCategoriaProductoMongodb {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -26,16 +26,13 @@ public class CategoriaProductoMongodb {
     @DBRef
     private ProductoMongodb productos;
 
-    @DBRef
-    private SubCategoriaProductoMongodb subCategorias;
-
-    CategoriaProductoMongodb(String titulo, String descripcion, String imgSrc) {
+    public SubCategoriaProductoMongodb(String titulo, String descripcion, String imgSrc) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imgSrc = imgSrc;
     }
-    
-    CategoriaProductoMongodb(){
+
+    public SubCategoriaProductoMongodb() {
     }
 
     public String getId() {
@@ -69,13 +66,4 @@ public class CategoriaProductoMongodb {
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
-
-    public ProductoMongodb getProductos() {
-        return productos;
-    }
-
-    public void setProductos(ProductoMongodb productos) {
-        this.productos = productos;
-    }
-
 }

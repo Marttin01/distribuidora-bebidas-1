@@ -40,7 +40,7 @@ public class CategoriaProductoMongoDbController {
     public ResponseEntity<CategoriaProductoMongodb> findById(@PathVariable String id){
         try {
             Optional<CategoriaProductoMongodb> categoriaProduOptional = service.findById(id);
-            if(categoriaProduOptional.isPresent()){
+            if(!categoriaProduOptional.isEmpty()){
                 return ResponseEntity.ok(categoriaProduOptional.orElseThrow());
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
