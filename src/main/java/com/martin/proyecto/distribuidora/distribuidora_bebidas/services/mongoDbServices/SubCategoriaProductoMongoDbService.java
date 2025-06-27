@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.ProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.SubCategoriaProductoMongodb;
 
 @Service
@@ -21,8 +20,8 @@ public interface SubCategoriaProductoMongoDbService {
 
     SubCategoriaProductoMongodb delete(String id);
 
-    SubCategoriaProductoMongodb addProducto(String id, ProductoMongodb producto);
+    SubCategoriaProductoMongodb addProducto(String id, String id2);
 
-    SubCategoriaProductoMongodb deleteProducto(String id, ProductoMongodb producto);
+    SubCategoriaProductoMongodb deleteProducto(String id, String id2);
 
 }

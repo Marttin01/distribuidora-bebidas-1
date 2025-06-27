@@ -72,4 +72,22 @@ public class SubCategoriaMongoDbController {
         }
     }
 
+    @PutMapping("/{id}/{id2}")
+    public ResponseEntity<SubCategoriaProductoMongodb> addProducto(@PathVariable String id, @PathVariable String id2){
+        try {
+            return ResponseEntity.ok(service.addProducto(id, id2));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PutMapping("/{id}/{id2}")
+    public ResponseEntity<SubCategoriaProductoMongodb> deleteProducto(@PathVariable String id, @PathVariable String id2){
+        try {
+            return ResponseEntity.ok(service.deleteProducto(id, id2));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

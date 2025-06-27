@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 
-import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.ProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.SubCategoriaProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.SubCategoriaProductoMongoDbRepository;
 
@@ -46,13 +45,12 @@ public class SubCategoriaProductoMongoDbServiceImpl implements SubCategoriaProdu
     }
 
     @Override
-    public SubCategoriaProductoMongodb addProducto(String id, ProductoMongodb producto) {
-        // TODO Auto-generated method stub
+    public SubCategoriaProductoMongodb addProducto(String id, String id2) {
         return null;
     }
 
     @Override
-    public SubCategoriaProductoMongodb deleteProducto(String id, ProductoMongodb producto) {
+    public SubCategoriaProductoMongodb deleteProducto(String id, String id2) {
         // TODO Auto-generated method stub
         return null;
     }
