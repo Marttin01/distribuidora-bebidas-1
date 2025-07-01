@@ -9,6 +9,8 @@ import org.springframework.web.client.HttpClientErrorException.NotFound;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.entities.mongoDbEntities.SubCategoriaProductoMongodb;
 import com.martin.proyecto.distribuidora.distribuidora_bebidas.repositories.mongoDbRepositories.SubCategoriaProductoMongoDbRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 public class SubCategoriaProductoMongoDbServiceImpl implements SubCategoriaProductoMongoDbService{
 
     @Autowired
@@ -31,7 +33,19 @@ public class SubCategoriaProductoMongoDbServiceImpl implements SubCategoriaProdu
 
     @Override
     public SubCategoriaProductoMongodb update(String id, SubCategoriaProductoMongodb subcategoria) {
-        return repository.save(subcategoria);
+
+        if(subcategoria == null)throw new IllegalArgumentException("La subcategoría a modificar no puede ser nula");
+
+        Optional<SubCategoriaProductoMongodb> optionalSub = repository.findById(id);
+
+        if(optionalSub.isEmpty()) throw new EntityNotFoundException("El id "+id+" no pudo encontrarse");
+
+        SubCategoriaProductoMongodb sub = optionalSub.orElseThrow();
+        sub.setDescripcion(subcategoria.getDescripcion() == null?sub.getDescripcion():subcategoria.getDescripcion());
+        sub.setImgSrc(subcategoria.getImgSrc() == null?sub.getImgSrc():subcategoria.getImgSrc());
+        sub.setTitulo(subcategoria.getTitulo() == null?sub.getTitulo():subcategoria.getTitulo());
+
+        return repository.save(sub);
     }
 
     @Override
@@ -45,13 +59,14 @@ public class SubCategoriaProductoMongoDbServiceImpl implements SubCategoriaProdu
     }
 
     @Override
-    public SubCategoriaProductoMongodb addProducto(String id, String id2) {
+    public SubCategoriaProductoMongodb addProducto(String id, String id2){
+     
         return null;
+
     }
 
     @Override
     public SubCategoriaProductoMongodb deleteProducto(String id, String id2) {
-        // TODO Auto-generated method stub
         return null;
     }
 
